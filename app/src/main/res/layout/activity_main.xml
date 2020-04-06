@@ -15,63 +15,69 @@
 
         <TextView
             android:id="@+id/tvUser"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="@dimen/user_width"
+            android:layout_height="@dimen/user_height"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
             android:clickable="false"
-            android:text="Username"
+            android:text="@string/username"
             android:gravity="center_vertical"
-            android:textSize="26sp" />
+            android:textSize="@dimen/user_size" />
 
         <EditText
             android:id="@+id/etUser"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="@dimen/user_width"
+            android:layout_height="@dimen/user_height"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
             android:inputType="textPersonName"
             android:text=""
             android:background="@null"
-            android:textSize="26sp"
+            android:textSize="@dimen/user_size"
             android:gravity="center_vertical"
             android:maxLength="12"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
     </ViewSwitcher>
 
     <Button
         android:id="@+id/btnChange"
-        android:layout_width="130dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Change User"
+        android:layout_width="@dimen/button_height"
+        android:layout_height="@dimen/user_height"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        android:text="@string/change_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ivCover"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:longClickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChange"
-        app:srcCompat="@drawable/ascend" />
+        app:srcCompat="@drawable/ascend"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginEnd="120dp"
-        android:text="Sad Songs"
-        android:textSize="36sp"
+        android:layout_marginStart="@dimen/title_margin_side"
+        android:layout_marginTop="@dimen/title_margin_top"
+        android:layout_marginEnd="@dimen/title_margin_side"
+        android:text="@string/title"
+        android:textSize="@dimen/title_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCover" />
@@ -80,10 +86,12 @@
         android:id="@+id/tvArtist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="Illenium, Said the Sky, Annika Wells"
-        android:textSize="24sp"
+        android:layout_marginStart="@dimen/artist_margin_side"
+        android:layout_marginEnd="@dimen/artist_margin_side"
+        android:text="@string/artist"
+        android:textSize="@dimen/secondary_size"
+        android:ellipsize="end"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
@@ -92,44 +100,53 @@
         android:id="@+id/tvPlayCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="199dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="199dp"
+        android:layout_marginStart="@dimen/count_margin_side"
+        android:layout_marginEnd="@dimen/count_margin_side"
         android:gravity="center"
-        android:text="0 plays"
-        android:textSize="24sp"
+        android:text="@string/_0_plays"
+        android:textSize="@dimen/secondary_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
 
     <ImageView
         android:id="@+id/ivPrevious"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="62dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="@dimen/func_button_length"
+        android:layout_height="@dimen/func_button_length"
+        android:layout_marginTop="@dimen/skip_margin_top"
+        android:layout_marginEnd="@dimen/func_length_from_mid"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvArtist"
-        app:srcCompat="@drawable/skip_previous" />
+        app:srcCompat="@drawable/skip_previous"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/ivPlay"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="19dp"
+        android:layout_width="@dimen/func_button_length"
+        android:layout_height="@dimen/func_button_length"
+        android:layout_marginTop="@dimen/play_margin_top"
         app:layout_constraintEnd_toStartOf="@+id/ivNext"
         app:layout_constraintStart_toEndOf="@+id/ivPrevious"
         app:layout_constraintTop_toBottomOf="@+id/tvPlayCount"
-        app:srcCompat="@drawable/ic_play_circle_filled_black_24dp" />
+        app:srcCompat="@drawable/ic_play_circle_filled_black_24dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/ivNext"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="85dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="@dimen/func_button_length"
+        android:layout_height="@dimen/func_button_length"
+        android:layout_marginStart="@dimen/func_length_from_mid"
+        android:layout_marginTop="@dimen/skip_margin_top"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvArtist"
-        app:srcCompat="@drawable/ic_skip_next_black_24dp" />
+        app:srcCompat="@drawable/ic_skip_next_black_24dp"
+        tools:ignore="ContentDescription" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
