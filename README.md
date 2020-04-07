@@ -21,9 +21,9 @@
 ### Sreenshots/Gif:
 
 ##### Pixel 2 Emulator
-![](extras/Pixel 2 Emulator.gif)
+![](./extras/Pixel 2 Emulator.gif)
 
-<img src="extras/Pixel 2 Emulator.png" />
+<img src="./extras/Pixel 2 Emulator.png" />
 
 
 #### Samsung Galaxy S10+
