@@ -21,4 +21,4 @@
 ### Sreenshots/Gif:
 
 ##### Pixel 2 Emulator
-<img src="https://github.com/ericngg/Dotify/blob/master/extras/Pixel%202%20Emulator.PNG" alt="emulator" /> ![Pixel 2 Emulator](https://github.com/ericngg/Dotify/blob/master/extras/Pixel%202%20Emulator.gif)
+<img src="https://github.com/ericngg/Dotify/blob/master/extras/Pixel%202%20Emulator.PNG" alt="emulator" height="399" /> ![Pixel 2 Emulator](https://github.com/ericngg/Dotify/blob/master/extras/Pixel%202%20Emulator.gif)
