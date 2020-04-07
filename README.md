@@ -1,5 +1,6 @@
 # Dotify
-Eric Ng
+
+## Developer: Eric Ng
 
 ### Description:
 **Dotify** is the next big music app that will break through into the music industry from an up and incoming start up. What the final product is a proof of concept screen on an Android app. At the moment, it does not play any music. 
