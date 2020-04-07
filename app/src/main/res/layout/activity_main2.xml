@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/margin"
-    tools:context=".MainActivity">
+    tools:context=".Main2Activity">
 
     <ViewSwitcher
         android:id="@+id/vsUser"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvUser"
@@ -27,6 +25,8 @@
             android:id="@+id/etUser"
             android:layout_width="@dimen/user_width"
             android:layout_height="@dimen/user_height"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
             android:background="@null"
             android:gravity="center_vertical"
             android:importantForAutofill="no"
@@ -44,34 +44,28 @@
         android:layout_width="@dimen/button_height"
         android:layout_height="@dimen/user_height"
         android:text="@string/change_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:id="@+id/ivCover"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btnChange"
         android:layout_marginTop="@dimen/margin"
         android:adjustViewBounds="true"
-        android:longClickable="true"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChange"
         app:srcCompat="@drawable/ascend"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ivCover"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/title_margin_top"
         android:text="@string/title"
-        android:textSize="@dimen/title_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCover" />
+        android:textSize="@dimen/title_size" />
 
     <TextView
         android:id="@+id/tvArtist"
@@ -80,65 +74,55 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:text="@string/artist"
-        android:textSize="@dimen/secondary_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        android:layout_below="@+id/tvTitle"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/secondary_size" />
 
     <TextView
         android:id="@+id/tvPlayCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_below="@+id/tvArtist"
+        android:layout_centerHorizontal="true"
         android:text="@string/_0_plays"
-        android:textSize="@dimen/secondary_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
+        android:textSize="@dimen/secondary_size" />
 
     <ImageView
         android:id="@+id/ivPrevious"
         android:layout_width="@dimen/func_button_length"
         android:layout_height="@dimen/func_button_length"
-        android:layout_marginTop="@dimen/skip_margin_top"
-        android:layout_marginEnd="@dimen/func_length_from_mid"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        android:layout_below="@+id/tvPlayCount"
+        android:layout_toStartOf="@+id/ivPlay"
+        android:layout_marginTop="@dimen/play_margin_top"
         app:srcCompat="@drawable/skip_previous"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <ImageView
         android:id="@+id/ivPlay"
         android:layout_width="@dimen/func_button_length"
         android:layout_height="@dimen/func_button_length"
+        android:layout_below="@+id/tvPlayCount"
         android:layout_marginTop="@dimen/play_margin_top"
-        app:layout_constraintEnd_toStartOf="@+id/ivNext"
-        app:layout_constraintStart_toEndOf="@+id/ivPrevious"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayCount"
+        android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/play"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <ImageView
         android:id="@+id/ivNext"
         android:layout_width="@dimen/func_button_length"
         android:layout_height="@dimen/func_button_length"
-        android:layout_marginStart="@dimen/func_length_from_mid"
-        android:layout_marginTop="@dimen/skip_margin_top"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        android:layout_below="@+id/tvPlayCount"
+        android:layout_toEndOf="@+id/ivPlay"
+        android:layout_marginTop="@dimen/play_margin_top"
         app:srcCompat="@drawable/skip_next"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="192dp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="wrap_content" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>
