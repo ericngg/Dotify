@@ -21,10 +21,4 @@
 ### Sreenshots/Gif:
 
 ##### Pixel 2 Emulator
-
-
-
-#### Samsung Galaxy S10+
-
-
-
+<img src="https://github.com/ericngg/Dotify/blob/master/extras/Pixel%202%20Emulator.PNG" alt="emulator" height="399px" /> ![Pixel 2 Emulator](https://github.com/ericngg/Dotify/blob/master/extras/Pixel%202%20Emulator.gif)
