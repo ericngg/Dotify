@@ -21,12 +21,14 @@
 ### Sreenshots/Gif:
 
 ##### Pixel 2 Emulator
-![](./extras/Pixel 2 Emulator.gif)
+![Pixel 2 Emulator](https://github.com/ericngg/Dotify/blob/master/extras/Pixel%202%20Emulator.gif)
 
-<img src="./extras/Pixel 2 Emulator.png" />
+<img src="https://github.com/ericngg/Dotify/blob/master/extras/Pixel%202%20Emulator.PNG" alt="emulator" />
 
 
 #### Samsung Galaxy S10+
+![S10+](https://github.com/ericngg/Dotify/blob/master/extras/S10%2B.mp4)
 
+<img src="https://github.com/ericngg/Dotify/blob/master/extras/S10%2B.jpg" alt="s10+" />
 
 
