@@ -48,7 +48,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivCover"
+        android:id="@+id/ivSongCover"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin"
@@ -62,7 +62,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvSongTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/title_margin_top"
@@ -71,10 +71,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCover" />
+        app:layout_constraintTop_toBottomOf="@+id/ivSongCover" />
 
     <TextView
-        android:id="@+id/tvArtist"
+        android:id="@+id/tvSongArtist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSongTitle" />
 
     <TextView
         android:id="@+id/tvPlayCount"
@@ -96,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist" />
 
     <ImageView
         android:id="@+id/ivPrevious"
@@ -105,7 +105,7 @@
         android:layout_marginTop="@dimen/skip_margin_top"
         android:layout_marginEnd="@dimen/func_length_from_mid"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist"
         app:srcCompat="@drawable/skip_previous"
         tools:ignore="ContentDescription" />
 
@@ -127,7 +127,7 @@
         android:layout_marginStart="@dimen/func_length_from_mid"
         android:layout_marginTop="@dimen/skip_margin_top"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist"
         app:srcCompat="@drawable/skip_next"
         tools:ignore="ContentDescription" />
 

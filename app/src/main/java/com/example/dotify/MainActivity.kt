@@ -2,31 +2,28 @@ package com.example.dotify
 
 import android.content.Context
 import android.graphics.Color
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var btnChange : Button
+    private lateinit var btnChange : Button
 
-    lateinit var btnPlay : ImageView
-    lateinit var ivPrevious : ImageView
-    lateinit var ivNext : ImageView
-    lateinit var ivCover : ImageView
+    private lateinit var btnPlay : ImageView
+    private lateinit var ivPrevious : ImageView
+    private lateinit var ivNext : ImageView
+    private lateinit var ivCover : ImageView
 
-    lateinit var tvPlayCount : TextView
-    lateinit var tvUser : TextView
-    lateinit var tvTitle : TextView
-    lateinit var tvArtist : TextView
-    lateinit var etUser : TextView
+    private lateinit var tvPlayCount : TextView
+    private lateinit var tvUser : TextView
+    private lateinit var tvTitle : TextView
+    private lateinit var tvArtist : TextView
+    private lateinit var etUser : TextView
 
-    lateinit var vsUser : ViewSwitcher
+    private lateinit var vsUser : ViewSwitcher
 
     private var count : Int = (1000000..1000000000).random()
     private var username : String = "Illenium"
@@ -44,9 +41,9 @@ class MainActivity : AppCompatActivity() {
         tvUser = findViewById(R.id.tvUser)
         etUser = findViewById(R.id.etUser)
         vsUser = findViewById(R.id.vsUser)
-        ivCover = findViewById(R.id.ivCover)
-        tvArtist = findViewById(R.id.tvArtist)
-        tvTitle = findViewById(R.id.tvTitle)
+        ivCover = findViewById(R.id.ivSongCover)
+        tvArtist = findViewById(R.id.tvSongArtist)
+        tvTitle = findViewById(R.id.tvSongTitle)
 
 
         // Sets number of plays from 1m to 1b
