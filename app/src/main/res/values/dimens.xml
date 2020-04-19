@@ -12,4 +12,7 @@
     <dimen name="user_size">26sp</dimen>
     <dimen name="title_size">30sp</dimen>
     <dimen name="secondary_size">20sp</dimen>
+    <dimen name="fill">0dp</dimen>
+    <dimen name="elevation">50dp</dimen>
+    <dimen name="miniSize">18sp</dimen>
 </resources>

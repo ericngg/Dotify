@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import com.ericchee.songdataprovider.Song
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,8 +27,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vsUser : ViewSwitcher
 
     private var count : Int = (1000000..1000000000).random()
-    private var username : String = "Illenium"
+    private var username : String = "Eric"
     private var isEdit : Boolean = false
+
+    private lateinit var song : Song
+
+    companion object {
+        const val SONG_KEY = "song"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +52,16 @@ class MainActivity : AppCompatActivity() {
         tvArtist = findViewById(R.id.tvSongArtist)
         tvTitle = findViewById(R.id.tvSongTitle)
 
+        song = intent.getParcelableExtra(SONG_KEY)
+        ivCover.setImageResource(song.largeImageID)
+        tvTitle.text = song.title
+        tvArtist.text = song.artist
+
 
         // Sets number of plays from 1m to 1b
         tvPlayCount.text = "$count plays"
 
-        // Set username, default username is Illenium
+        // Set username, default username is Eric
         tvUser.text = username
 
         // Set play button onclick
@@ -78,6 +90,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     // Increase the count play by 1 for each click
@@ -125,9 +138,9 @@ class MainActivity : AppCompatActivity() {
     // Closes keyboard when changing username
     private fun closeKeyboard() {
         var view = this.currentFocus
-        if (view != null) {
+        view?.let {
             var imm : InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 

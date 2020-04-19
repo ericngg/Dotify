@@ -5,4 +5,7 @@
     <string name="artist">Illenium, Said the Sky, Annika</string>
     <string name="username">Username</string>
     <string name="title">Sad Songs</string>
+    <string name="playlist">All Songs</string>
+    <string name="playlistCover">Cover Photo</string>
+    <string name="shuffle">Shuffle</string>
 </resources>

@@ -9,9 +9,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSongList"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/fill"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toTopOf="@+id/clMiniPlayer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,12 +19,12 @@
         tools:listitem="@layout/song" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/clMiniPlayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="@dimen/margin"
         android:background="#ffffff"
-        android:elevation="50dp"
+        android:elevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -33,18 +33,18 @@
             android:id="@+id/btnShuffle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shuffle"
+            android:text="@string/shuffle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvSong"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/fill"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:textSize="18sp"
-            android:layout_marginRight="16dp"
+            android:textSize="@dimen/miniSize"
+            android:layout_marginEnd="@dimen/margin"
             android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnShuffle"

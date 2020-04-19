@@ -12,6 +12,8 @@ class SongListAdapter(private val listOfSongs: List<Song>): RecyclerView.Adapter
 
     var onSongClickListener: ((song: Song) -> Unit)? = null
 
+    lateinit var onSongLongClickListener: ((song: Song, position: Int) -> Boolean)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
         val item = LayoutInflater.from(parent.context).inflate(R.layout.song, parent, false)
         return SongViewHolder(item)
@@ -21,7 +23,7 @@ class SongListAdapter(private val listOfSongs: List<Song>): RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val songName = listOfSongs[position]
-        holder.bind(songName)
+        holder.bind(songName, position)
     }
 
     inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -29,13 +31,17 @@ class SongListAdapter(private val listOfSongs: List<Song>): RecyclerView.Adapter
         private val tvSongTitle by lazy {itemView.findViewById<TextView>(R.id.tvSongTitle)}
         private val tvSongArtist by lazy {itemView.findViewById<TextView>(R.id.tvSongArtist)}
 
-        fun bind(song: Song) {
+        fun bind(song: Song, position: Int) {
             ivSongCover.setImageResource(song.smallImageID)
             tvSongTitle.text = song.title
             tvSongArtist.text = song.artist
 
             itemView.setOnClickListener {
                 onSongClickListener?.invoke(song)
+            }
+
+            itemView.setOnLongClickListener {
+                onSongLongClickListener?.invoke(song, position)
             }
         }
     }
