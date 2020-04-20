@@ -43,7 +43,6 @@ class SongListActivity : AppCompatActivity() {
 
         // Initialize onClick and onLongClick on start up
         setOnClick(songListAdapter)
-
         rvSongList.adapter = songListAdapter
 
         // Shuffles the playlist and recreates the recycler view
@@ -70,11 +69,13 @@ class SongListActivity : AppCompatActivity() {
 
     // Set onClick and onLongClick for songs in playlist
     private fun setOnClick(adapter: SongListAdapter) {
+        // onClick
         adapter.onSongClickListener = { song ->
             current = song
             tvSong.text = "${song.title} - ${song.artist}"
         }
 
+        // onLongClick
         adapter.onSongLongClickListener = { song, position ->
             handleRemove(position)
             adapter.notifyItemRemoved(position)
@@ -84,6 +85,7 @@ class SongListActivity : AppCompatActivity() {
         }
     }
 
+    // Helper method for remove function
     private fun handleRemove(position: Int) {
         var temp: MutableList<Song> = listOfSong as MutableList<Song>
         temp.removeAt(position)

@@ -36,7 +36,8 @@
             android:textSize="@dimen/user_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="LabelFor" />
+            android:hint="@string/user"
+            />
     </ViewSwitcher>
 
     <Button
@@ -59,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChange"
         tools:src="@drawable/ascend"
-        tools:ignore="ContentDescription" />
+        android:contentDescription="@string/playlistCover" />
 
     <TextView
         android:id="@+id/tvSongTitle"
@@ -107,7 +108,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvSongArtist"
         app:srcCompat="@drawable/skip_previous"
-        tools:ignore="ContentDescription" />
+        android:contentDescription="@string/skipBack" />
 
     <ImageView
         android:id="@+id/ivPlay"
@@ -118,7 +119,7 @@
         app:layout_constraintStart_toEndOf="@+id/ivPrevious"
         app:layout_constraintTop_toBottomOf="@+id/tvPlayCount"
         app:srcCompat="@drawable/play"
-        tools:ignore="ContentDescription" />
+        android:contentDescription="@string/play" />
 
     <ImageView
         android:id="@+id/ivNext"
@@ -129,7 +130,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvSongArtist"
         app:srcCompat="@drawable/skip_next"
-        tools:ignore="ContentDescription" />
+        android:contentDescription="@string/skipForward" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

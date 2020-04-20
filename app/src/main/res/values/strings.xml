@@ -6,6 +6,10 @@
     <string name="username">Username</string>
     <string name="title">Sad Songs</string>
     <string name="playlist">All Songs</string>
-    <string name="playlistCover">Cover Photo</string>
+    <string name="playlistCover">Cover photo</string>
     <string name="shuffle">Shuffle</string>
+    <string name="user">Your username</string>
+    <string name="skipBack">Previous skip</string>
+    <string name="skipForward">Skip forward</string>
+    <string name="play">Adds one play</string>
 </resources>
