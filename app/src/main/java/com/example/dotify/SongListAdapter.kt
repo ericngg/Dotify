@@ -10,8 +10,10 @@ import com.ericchee.songdataprovider.Song
 
 class SongListAdapter(private val listOfSongs: List<Song>): RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
 
+    // onClick
     var onSongClickListener: ((song: Song) -> Unit)? = null
 
+    // onLongClick
     lateinit var onSongLongClickListener: ((song: Song, position: Int) -> Boolean)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
