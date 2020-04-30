@@ -9,3 +9,5 @@
 
 ##### Pixel 3 XL Emulator
 <img src="https://github.com/ericngg/Dotify/blob/hw2/extras/hw2/Screenshot.JPG" alt="emulator" /> ![Pixel 3XL Emulator](https://github.com/ericngg/Dotify/blob/hw2/extras/hw2/capture.gif)
+
+![Pixel 3XL Emulator](https://github.com/ericngg/Dotify/blob/hw3/extras/hw3/hw3.gif)
