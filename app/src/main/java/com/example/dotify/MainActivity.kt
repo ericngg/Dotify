@@ -2,7 +2,6 @@ package com.example.dotify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
         // Back button and hides mini player during player activity
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            clMiniPlayer.visibility = View.INVISIBLE
+            clMiniPlayer.visibility = View.GONE
         } else {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
             clMiniPlayer.visibility = View.VISIBLE
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount > 0) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                clMiniPlayer.visibility = View.INVISIBLE
+                clMiniPlayer.visibility = View.GONE
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 clMiniPlayer.visibility = View.VISIBLE

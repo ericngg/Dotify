@@ -45,7 +45,6 @@ class NowPlayingFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View?  {
-
         return layoutInflater.inflate(R.layout.player_activity, container, false)
     }
 
@@ -56,7 +55,6 @@ class NowPlayingFragment : Fragment() {
         ivPrevious = view.findViewById(R.id.ivPrevious) as ImageView
         ivNext = view.findViewById(R.id.ivNext) as ImageView
         ivCover = view.findViewById(R.id.ivSongCover) as ImageView
-
 
         tvArtist = view.findViewById(R.id.tvSongArtist) as TextView
         tvTitle = view.findViewById(R.id.tvSongTitle) as TextView
