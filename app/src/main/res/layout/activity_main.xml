@@ -4,142 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/margin"
     tools:context=".MainActivity">
 
-    <ViewSwitcher
-        android:id="@+id/vsUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/flFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/clMiniPlayer"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvUser"
-            android:layout_width="@dimen/user_width"
-            android:layout_height="@dimen/user_height"
-            android:clickable="false"
-            android:gravity="center_vertical"
-            android:text="@string/username"
-            android:textSize="@dimen/user_size" />
+    </FrameLayout>
 
-        <EditText
-            android:id="@+id/etUser"
-            android:layout_width="@dimen/user_width"
-            android:layout_height="@dimen/user_height"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:maxLength="12"
-            android:text=""
-            android:textSize="@dimen/user_size"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMiniPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin"
+        android:background="#ffffff"
+        android:elevation="@dimen/elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnShuffle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shuffle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSong"
+            android:layout_width="@dimen/fill"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textSize="@dimen/miniSize"
+            android:layout_marginEnd="@dimen/margin"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnShuffle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:hint="@string/user"
-            />
-    </ViewSwitcher>
-
-    <Button
-        android:id="@+id/btnChange"
-        android:layout_width="@dimen/button_height"
-        android:layout_height="@dimen/user_height"
-        android:text="@string/change_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ivSongCover"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin"
-        android:adjustViewBounds="true"
-        android:longClickable="true"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChange"
-        tools:src="@drawable/ascend"
-        android:contentDescription="@string/playlistCover" />
-
-    <TextView
-        android:id="@+id/tvSongTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/title_margin_top"
-        tools:text="@string/title"
-        android:textSize="@dimen/title_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivSongCover" />
-
-    <TextView
-        android:id="@+id/tvSongArtist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:singleLine="true"
-        tools:text="@string/artist"
-        android:textSize="@dimen/secondary_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSongTitle" />
-
-    <TextView
-        android:id="@+id/tvPlayCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/_0_plays"
-        android:textSize="@dimen/secondary_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist" />
-
-    <ImageView
-        android:id="@+id/ivPrevious"
-        android:layout_width="@dimen/func_button_length"
-        android:layout_height="@dimen/func_button_length"
-        android:layout_marginTop="@dimen/skip_margin_top"
-        android:layout_marginEnd="@dimen/func_length_from_mid"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist"
-        app:srcCompat="@drawable/skip_previous"
-        android:contentDescription="@string/skipBack" />
-
-    <ImageView
-        android:id="@+id/ivPlay"
-        android:layout_width="@dimen/func_button_length"
-        android:layout_height="@dimen/func_button_length"
-        android:layout_marginTop="@dimen/play_margin_top"
-        app:layout_constraintEnd_toStartOf="@+id/ivNext"
-        app:layout_constraintStart_toEndOf="@+id/ivPrevious"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayCount"
-        app:srcCompat="@drawable/play"
-        android:contentDescription="@string/play" />
-
-    <ImageView
-        android:id="@+id/ivNext"
-        android:layout_width="@dimen/func_button_length"
-        android:layout_height="@dimen/func_button_length"
-        android:layout_marginStart="@dimen/func_length_from_mid"
-        android:layout_marginTop="@dimen/skip_margin_top"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist"
-        app:srcCompat="@drawable/skip_next"
-        android:contentDescription="@string/skipForward" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="192dp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+            tools:text="Title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.example.dotify
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -17,11 +16,11 @@ class SongListActivity : AppCompatActivity() {
 
     private lateinit var rvSongList : RecyclerView
 
-    private lateinit var tvSong : TextView
+    //private lateinit var tvSong : TextView
 
-    private lateinit var btnShuffle : Button
+    //private lateinit var btnShuffle : Button
 
-    private lateinit var clMiniPlayer : ConstraintLayout
+    //private lateinit var clMiniPlayer : ConstraintLayout
 
     private lateinit var listOfSong : List<Song>
 
@@ -33,9 +32,9 @@ class SongListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_song_list)
 
         rvSongList = findViewById(R.id.rvSongList)
-        tvSong = findViewById(R.id.tvSong)
-        btnShuffle = findViewById(R.id.btnShuffle)
-        clMiniPlayer = findViewById(R.id.clMiniPlayer)
+        //tvSong = findViewById(R.id.tvSong)
+        //btnShuffle = findViewById(R.id.btnShuffle)
+        //clMiniPlayer = findViewById(R.id.clMiniPlayer)
 
         // Initialize RecyclerView
         listOfSong = SongDataProvider.getAllSongs()
@@ -46,6 +45,7 @@ class SongListActivity : AppCompatActivity() {
         rvSongList.adapter = songListAdapter
 
         // Shuffles the playlist and recreates the recycler view
+        /*
         btnShuffle.setOnClickListener {
             // Shuffles playlist
             val newList = listOfSong.shuffled()
@@ -59,12 +59,14 @@ class SongListActivity : AppCompatActivity() {
         // Opens Song screen
         clMiniPlayer.setOnClickListener{
             current?.let{
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, PlayerActivity::class.java)
                 intent.putExtra("song", it)
 
                 startActivity(intent)
             }
         }
+
+         */
     }
 
     // Set onClick and onLongClick for songs in playlist
@@ -72,7 +74,7 @@ class SongListActivity : AppCompatActivity() {
         // onClick
         adapter.onSongClickListener = { song ->
             current = song
-            tvSong.text = "${song.title} - ${song.artist}"
+            //tvSong.text = "${song.title} - ${song.artist}"
         }
 
         // onLongClick

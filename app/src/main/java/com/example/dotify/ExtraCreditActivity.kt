@@ -3,10 +3,10 @@ package com.example.dotify
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class Main2Activity : AppCompatActivity() {
+class ExtraCreditActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.extra_credit_activity)
     }
 }

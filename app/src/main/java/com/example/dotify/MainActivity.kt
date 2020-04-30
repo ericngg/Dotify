@@ -1,158 +1,129 @@
 package com.example.dotify
 
-import android.content.Context
-import android.graphics.Color
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.DiffUtil
 import com.ericchee.songdataprovider.Song
+import com.ericchee.songdataprovider.SongDataProvider
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnSongClickListener {
 
-    private lateinit var btnChange : Button
 
-    private lateinit var btnPlay : ImageView
-    private lateinit var ivPrevious : ImageView
-    private lateinit var ivNext : ImageView
-    private lateinit var ivCover : ImageView
+    private lateinit var tvSong : TextView
 
-    private lateinit var tvPlayCount : TextView
-    private lateinit var tvUser : TextView
-    private lateinit var tvTitle : TextView
-    private lateinit var tvArtist : TextView
-    private lateinit var etUser : TextView
+    private lateinit var btnShuffle : Button
 
-    private lateinit var vsUser : ViewSwitcher
+    private lateinit var clMiniPlayer : ConstraintLayout
 
-    private var count : Int = (1000000..1000000000).random()
-    private var username : String = "Eric"
-    private var isEdit : Boolean = false
-
-    private lateinit var song : Song
+    private var current : Song? = null
 
     companion object {
-        const val SONG_KEY = "song"
+        private const val SONG = "song"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnPlay = findViewById(R.id.ivPlay)
-        tvPlayCount = findViewById(R.id.tvPlayCount)
-        ivPrevious = findViewById(R.id.ivPrevious)
-        ivNext = findViewById(R.id.ivNext)
-        btnChange = findViewById(R.id.btnChange)
-        tvUser = findViewById(R.id.tvUser)
-        etUser = findViewById(R.id.etUser)
-        vsUser = findViewById(R.id.vsUser)
-        ivCover = findViewById(R.id.ivSongCover)
-        tvArtist = findViewById(R.id.tvSongArtist)
-        tvTitle = findViewById(R.id.tvSongTitle)
+        tvSong = findViewById(R.id.tvSong)
+        btnShuffle = findViewById(R.id.btnShuffle)
+        clMiniPlayer = findViewById(R.id.clMiniPlayer)
 
-        song = intent.getParcelableExtra(SONG_KEY)
-        ivCover.setImageResource(song.largeImageID)
-        tvTitle.text = song.title
-        tvArtist.text = song.artist
+        // Start up set-up
+        initialSetup()
+        
+        if (savedInstanceState != null) {
 
+            with(savedInstanceState) {
+                current = getParcelable(SONG)
 
-        // Sets number of plays from 1m to 1b
-        tvPlayCount.text = "$count plays"
-
-        // Set username, default username is Eric
-        tvUser.text = username
-
-        // Set play button onclick
-        btnPlay.setOnClickListener {
-            increaseCount();
+                current?.let { song ->
+                    tvSong.text = "${song.title} - ${song.artist}"
+                }
+            }
         }
 
-        // Set previous button onclick
-        ivPrevious.setOnClickListener {
-            Toast.makeText(this, "Skipping to previous track", Toast.LENGTH_SHORT).show()
+        // Opens Song screen
+        clMiniPlayer.setOnClickListener{
+            current?.let{ song ->
+                npFragmentSetup(song)
+            }
         }
 
-        // Set next button onclick
-        ivNext.setOnClickListener {
-            Toast.makeText(this, "Skipping to next track", Toast.LENGTH_SHORT).show()
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount > 0) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                clMiniPlayer.visibility = View.INVISIBLE
+            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                clMiniPlayer.visibility = View.VISIBLE
+            }
         }
-
-
-        // Set change user button onclick
-        btnChange.setOnClickListener {
-            changeUsername()
-        }
-
-        ivCover.setOnLongClickListener {
-            changeColor()
-            true
-        }
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    // Increase the count play by 1 for each click
-    private fun increaseCount() {
-        count = count.inc()
-        tvPlayCount.text = "$count plays"
+    // Updates mini player
+    override fun onSongClicked(song: Song) {
+        current = song
+        tvSong.text = "${song.title} - ${song.artist}"
     }
 
-    // Changes the username
-    private fun changeUsername() {
-        // If change username is pressed
-        if(!isEdit) {
-            etUser.text = username
-            btnChange.text = "Apply"
+    private fun getNowPlayingFragment() = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
 
-            vsUser.showNext();
-            openKeyboard()
+    override fun onSupportNavigateUp(): Boolean {
+        supportFragmentManager.popBackStack()
+        return super.onSupportNavigateUp()
+    }
 
-        } else { // In edit state for username
-            if(TextUtils.isEmpty(etUser.text.toString().trim())) {
-                etUser.error = "The username cannot be empty"
-                return
+    // Song List Fragment
+    private fun initialSetup() {
+        val slFragment = SongListFragment()
+        val slArgumentBundle = Bundle().apply {
+            putParcelableArray(SongListFragment.ARG_SONG_LIST, SongDataProvider.getAllSongs().toTypedArray())
+        }
+        slFragment.arguments = slArgumentBundle
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flFragment, slFragment)
+            .commit()
+
+        btnShuffle.setOnClickListener {
+            slFragment.shuffleList()
+        }
+    }
+
+    // Now Playing Fragment
+    private fun npFragmentSetup(song: Song) {
+        val fragment = getNowPlayingFragment()
+        if(fragment == null) {
+            val npFragment = NowPlayingFragment()
+            val npArgumentBundle = Bundle().apply {
+                putParcelable(NowPlayingFragment.ARG_NOW_PLAYING, song)
             }
 
-            username = etUser.text.toString()
-            tvUser.text = username
+            npFragment.arguments = npArgumentBundle
 
-            btnChange.text = "Change User"
-            closeKeyboard()
-
-            vsUser.showNext();
-        }
-
-        isEdit = !isEdit
-    }
-
-    // Opens keyboard when changing username
-    private fun openKeyboard() {
-        etUser.requestFocus()
-        var imm : InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(etUser, InputMethodManager.SHOW_IMPLICIT)
-
-    }
-
-    // Closes keyboard when changing username
-    private fun closeKeyboard() {
-        var view = this.currentFocus
-        view?.let {
-            var imm : InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.flFragment, npFragment, NowPlayingFragment.TAG)
+                .addToBackStack(NowPlayingFragment.TAG)
+                .commit()
+        } else {
+            fragment.updateSong(song)
         }
     }
 
-    // Changes color of text
-    private fun changeColor() {
-        var color : Int = Color.argb(255, (0..255).random(), (0..255).random(), (0..255).random())
-        tvUser.setTextColor(color)
-        etUser.setTextColor(color)
-        tvTitle.setTextColor(color)
-        tvArtist.setTextColor(color)
-        tvPlayCount.setTextColor(color)
+    override fun onSaveInstanceState(outState: Bundle) {
+        current?.let { song ->
+            outState.putParcelable(SONG, song)
+        }
+
+        super.onSaveInstanceState(outState)
     }
-
-
 }

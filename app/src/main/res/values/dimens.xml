@@ -4,11 +4,11 @@
     <dimen name="user_width">200dp</dimen>
     <dimen name="user_height">45dp</dimen>
     <dimen name="button_height">130dp</dimen>
-    <dimen name="title_margin_top">5dp</dimen>
+    <dimen name="title_margin_top">10dp</dimen>
     <dimen name="func_button_length">80dp</dimen>
     <dimen name="func_length_from_mid">40dp</dimen>
-    <dimen name="skip_margin_top">33dp</dimen>
-    <dimen name="play_margin_top">6dp</dimen>
+    <dimen name="skip_margin_top">38dp</dimen>
+    <dimen name="play_margin_top">12dp</dimen>
     <dimen name="user_size">26sp</dimen>
     <dimen name="title_size">30sp</dimen>
     <dimen name="secondary_size">20sp</dimen>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin"
+    android:background="@color/white"
+    android:clickable="true"
+    tools:context=".PlayerActivity">
+
+    <ImageView
+        android:id="@+id/ivSongCover"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/playlistCover"
+        android:longClickable="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ascend" />
+
+    <TextView
+        android:id="@+id/tvSongTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_margin_top"
+        tools:text="@string/title"
+        android:textSize="@dimen/title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSongCover" />
+
+    <TextView
+        android:id="@+id/tvSongArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        tools:text="@string/artist"
+        android:textSize="@dimen/secondary_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongTitle" />
+
+    <TextView
+        android:id="@+id/tvPlayCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/_0_plays"
+        android:textSize="@dimen/secondary_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist" />
+
+    <ImageView
+        android:id="@+id/ivPrevious"
+        android:layout_width="@dimen/func_button_length"
+        android:layout_height="@dimen/func_button_length"
+        android:layout_marginTop="@dimen/skip_margin_top"
+        android:layout_marginEnd="@dimen/func_length_from_mid"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist"
+        app:srcCompat="@drawable/skip_previous"
+        android:contentDescription="@string/skipBack" />
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="@dimen/func_button_length"
+        android:layout_height="@dimen/func_button_length"
+        android:layout_marginTop="@dimen/play_margin_top"
+        app:layout_constraintEnd_toStartOf="@+id/ivNext"
+        app:layout_constraintStart_toEndOf="@+id/ivPrevious"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayCount"
+        app:srcCompat="@drawable/play"
+        android:contentDescription="@string/play" />
+
+    <ImageView
+        android:id="@+id/ivNext"
+        android:layout_width="@dimen/func_button_length"
+        android:layout_height="@dimen/func_button_length"
+        android:layout_marginStart="@dimen/func_length_from_mid"
+        android:layout_marginTop="@dimen/skip_margin_top"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongArtist"
+        app:srcCompat="@drawable/skip_next"
+        android:contentDescription="@string/skipForward" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="192dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
