@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
         // Start up set-up
         initialSetup()
 
+        // For orientation (mini player song)
         if (savedInstanceState != null) {
             with(savedInstanceState) {
                 current = getParcelable(SONG)
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
             }
         }
 
+        // Back button and hides mini player during player activity
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             clMiniPlayer.visibility = View.INVISIBLE
@@ -61,6 +63,7 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
             clMiniPlayer.visibility = View.VISIBLE
         }
 
+        // Back button and hides mini player during player activity for fragments
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount > 0) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -69,8 +72,6 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 clMiniPlayer.visibility = View.VISIBLE
             }
-
-            Log.i("test", "${supportFragmentManager.backStackEntryCount}")
         }
     }
 
@@ -80,10 +81,13 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
         tvSong.text = "${song.title} - ${song.artist}"
     }
 
+    // Getter method for now playing fragment
     private fun getNowPlayingFragment() = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
 
+    // Getter method for song list fragment
     private fun getSongListFragment() = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
 
+    // Pops top fragment out of stack
     override fun onSupportNavigateUp(): Boolean {
         supportFragmentManager.popBackStack()
         return super.onSupportNavigateUp()
@@ -92,7 +96,6 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
     // Song List Fragment
     private fun initialSetup() {
         val fragment = getSongListFragment()
-        Log.i("test", "hello")
         if (fragment == null) {
             val slFragment = SongListFragment.getInstance(SongDataProvider.getAllSongs().toTypedArray())
 
@@ -104,13 +107,16 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
             btnShuffle.setOnClickListener {
                 slFragment.shuffleList()
             }
+        } else {
+            btnShuffle.setOnClickListener {
+                fragment.shuffleList()
+            }
         }
     }
 
     // Now Playing Fragment
     private fun npFragmentSetup(song: Song) {
         val fragment = getNowPlayingFragment()
-        Log.i("test", "NP")
         if(fragment == null) {
             val npFragment = NowPlayingFragment.getInstance(song)
 

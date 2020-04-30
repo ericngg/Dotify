@@ -52,15 +52,15 @@ class NowPlayingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnPlay = view?.findViewById(R.id.ivPlay) as ImageView
-        ivPrevious = view?.findViewById(R.id.ivPrevious) as ImageView
-        ivNext = view?.findViewById(R.id.ivNext) as ImageView
-        ivCover = view?.findViewById(R.id.ivSongCover) as ImageView
+        btnPlay = view.findViewById(R.id.ivPlay) as ImageView
+        ivPrevious = view.findViewById(R.id.ivPrevious) as ImageView
+        ivNext = view.findViewById(R.id.ivNext) as ImageView
+        ivCover = view.findViewById(R.id.ivSongCover) as ImageView
 
 
-        tvArtist = view?.findViewById(R.id.tvSongArtist) as TextView
-        tvTitle = view?.findViewById(R.id.tvSongTitle) as TextView
-        tvPlayCount = view?.findViewById(R.id.tvPlayCount) as TextView
+        tvArtist = view.findViewById(R.id.tvSongArtist) as TextView
+        tvTitle = view.findViewById(R.id.tvSongTitle) as TextView
+        tvPlayCount = view.findViewById(R.id.tvPlayCount) as TextView
 
         // Set PlayCount
         if (savedInstanceState != null) {
@@ -68,7 +68,6 @@ class NowPlayingFragment : Fragment() {
                 playCount = getInt(COUNT)
             }
         }
-
         tvPlayCount.text = "$playCount plays"
 
         arguments?.let { args ->
@@ -94,6 +93,7 @@ class NowPlayingFragment : Fragment() {
             Toast.makeText(context, "Skipping to next track", Toast.LENGTH_SHORT).show()
         }
 
+        // Changes text color to a random color
         ivCover.setOnLongClickListener {
             changeColor()
             true
@@ -115,12 +115,14 @@ class NowPlayingFragment : Fragment() {
         tvPlayCount.setTextColor(color)
     }
 
+    // public method for setting song for playlist
     fun updateSong(song: Song) {
         ivCover.setImageResource(song.largeImageID)
         tvTitle.text = song.title
         tvArtist.text = song.artist
     }
 
+    // Saves count in state
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(COUNT, playCount)
         super.onSaveInstanceState(outState)

@@ -16,9 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SongListActivity" android:label="@string/playlist" />
-        <activity android:name=".PlayerActivity" android:parentActivityName=".SongListActivity" />
-        <activity android:name=".ExtraCreditActivity" />
     </application>
 
 </manifest>
