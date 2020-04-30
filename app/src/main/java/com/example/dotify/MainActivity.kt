@@ -131,6 +131,7 @@ class MainActivity : AppCompatActivity(), OnSongClickListener {
         }
     }
 
+    // Save song that is selected in mini player
     override fun onSaveInstanceState(outState: Bundle) {
         current?.let { song ->
             outState.putParcelable(SONG, song)
