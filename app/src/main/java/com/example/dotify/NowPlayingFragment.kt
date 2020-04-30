@@ -1,16 +1,11 @@
 package com.example.dotify
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
 
@@ -25,18 +20,25 @@ class NowPlayingFragment : Fragment() {
     private lateinit var tvTitle : TextView
     private lateinit var tvArtist : TextView
 
-    private var count : Int = 0
+    private var playCount : Int = 0
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val ARG_NOW_PLAYING = "arg_now_playing"
+        private const val COUNT = "count"
+
+        fun getInstance(song: Song): NowPlayingFragment = NowPlayingFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable(ARG_NOW_PLAYING, song)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Sets number of plays from 1m to 1b
-        count = (1000000..1000000000).random()
+        playCount = (1000000..1000000000).random()
     }
 
     override fun onCreateView(
@@ -61,7 +63,13 @@ class NowPlayingFragment : Fragment() {
         tvPlayCount = view?.findViewById(R.id.tvPlayCount) as TextView
 
         // Set PlayCount
-        tvPlayCount.text = "$count plays"
+        if (savedInstanceState != null) {
+            with(savedInstanceState) {
+                playCount = getInt(COUNT)
+            }
+        }
+
+        tvPlayCount.text = "$playCount plays"
 
         arguments?.let { args ->
            args.getParcelable<Song>(ARG_NOW_PLAYING)?.let { song ->
@@ -95,8 +103,8 @@ class NowPlayingFragment : Fragment() {
 
     // Increase the count play by 1 for each click
     private fun increaseCount() {
-        count = count.inc()
-        tvPlayCount.text = "$count plays"
+        playCount = playCount.inc()
+        tvPlayCount.text = "$playCount plays"
     }
 
     // Changes color of text
@@ -114,12 +122,7 @@ class NowPlayingFragment : Fragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        Log.i("test", "saved")
-        current?.let { song ->
-            Log.i("test", "hello")
-            outState.putParcelable(MainActivity.SONG, song)
-        }
-
+        outState.putInt(COUNT, playCount)
         super.onSaveInstanceState(outState)
     }
 }

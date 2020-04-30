@@ -10,18 +10,26 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
+import com.ericchee.songdataprovider.SongDataProvider
 
 
 class SongListFragment : Fragment() {
 
-    private lateinit var rvSongList : RecyclerView
+    private lateinit var rvSongList: RecyclerView
 
-    private lateinit var listOfSong : MutableList<Song>
+    private lateinit var listOfSong: MutableList<Song>
 
     private var onSongClickListener: OnSongClickListener? = null
 
     companion object {
+        val TAG: String = SongListFragment::class.java.simpleName
         const val ARG_SONG_LIST = "arg_song_list"
+
+        fun getInstance(songList: Array<Song>): SongListFragment = SongListFragment().apply {
+            arguments = Bundle().apply {
+                putParcelableArray(SongListFragment.ARG_SONG_LIST, songList)
+            }
+        }
     }
 
     override fun onAttach(context: Context) {
