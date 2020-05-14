@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navSongList"
+        android:icon="@drawable/playlist"
+        android:title="Song List" />
+    <item
+        android:id="@+id/navProfile"
+        android:icon="@drawable/person"
+        android:title="Profile" />
+</menu>

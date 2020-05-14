@@ -15,4 +15,5 @@
     <dimen name="fill">0dp</dimen>
     <dimen name="elevation">50dp</dimen>
     <dimen name="miniSize">18sp</dimen>
+    <dimen name="navPadding">5dp</dimen>
 </resources>

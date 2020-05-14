@@ -1,6 +1,5 @@
-package com.example.dotify
+package com.example.dotify.Fragments
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
+import com.example.dotify.DotifyApp
+import com.example.dotify.Managers.MusicManager
+import com.example.dotify.R
 
 class NowPlayingFragment : Fragment() {
 
@@ -20,7 +22,8 @@ class NowPlayingFragment : Fragment() {
     private lateinit var tvTitle : TextView
     private lateinit var tvArtist : TextView
 
-    private var playCount : Int = 0
+    private lateinit var musicManager: MusicManager
+
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
@@ -37,8 +40,9 @@ class NowPlayingFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        musicManager = (context?.applicationContext as DotifyApp).musicManager
         // Sets number of plays from 1m to 1b
-        playCount = (1000000..1000000000).random()
+        musicManager.playCount = (1000000..1000000000).random()
     }
 
     override fun onCreateView(
@@ -63,10 +67,10 @@ class NowPlayingFragment : Fragment() {
         // Set PlayCount
         if (savedInstanceState != null) {
             with(savedInstanceState) {
-                playCount = getInt(COUNT)
+                musicManager.playCount = getInt(COUNT)
             }
         }
-        tvPlayCount.text = "$playCount plays"
+        tvPlayCount.text = "${musicManager.playCount} plays"
 
         arguments?.let { args ->
            args.getParcelable<Song>(ARG_NOW_PLAYING)?.let { song ->
@@ -78,7 +82,8 @@ class NowPlayingFragment : Fragment() {
 
         // Set play button onclick
         btnPlay.setOnClickListener {
-            increaseCount();
+            musicManager.increaseCount();
+            tvPlayCount.text = "${musicManager.playCount} plays"
         }
 
         // Set previous button onclick
@@ -93,24 +98,14 @@ class NowPlayingFragment : Fragment() {
 
         // Changes text color to a random color
         ivCover.setOnLongClickListener {
-            changeColor()
+            musicManager.changeColor()
+            tvTitle.setTextColor(musicManager.color)
+            tvArtist.setTextColor(musicManager.color)
+            tvPlayCount.setTextColor(musicManager.color)
+
             true
         }
 
-    }
-
-    // Increase the count play by 1 for each click
-    private fun increaseCount() {
-        playCount = playCount.inc()
-        tvPlayCount.text = "$playCount plays"
-    }
-
-    // Changes color of text
-    private fun changeColor() {
-        var color : Int = Color.argb(255, (0..255).random(), (0..255).random(), (0..255).random())
-        tvTitle.setTextColor(color)
-        tvArtist.setTextColor(color)
-        tvPlayCount.setTextColor(color)
     }
 
     // public method for setting song for playlist
@@ -122,7 +117,7 @@ class NowPlayingFragment : Fragment() {
 
     // Saves count in state
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(COUNT, playCount)
+        outState.putInt(COUNT, musicManager.playCount)
         super.onSaveInstanceState(outState)
     }
 }

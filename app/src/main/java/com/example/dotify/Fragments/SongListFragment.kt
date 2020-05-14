@@ -1,4 +1,4 @@
-package com.example.dotify
+package com.example.dotify.Fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
+import com.example.dotify.OnSongClickListener
+import com.example.dotify.PersonDiffCallback
+import com.example.dotify.R
+import com.example.dotify.SongListAdapter
 
 
 class SongListFragment : Fragment() {
@@ -26,7 +30,7 @@ class SongListFragment : Fragment() {
 
         fun getInstance(songList: Array<Song>): SongListFragment = SongListFragment().apply {
             arguments = Bundle().apply {
-                putParcelableArray(SongListFragment.ARG_SONG_LIST, songList)
+                putParcelableArray(ARG_SONG_LIST, songList)
             }
         }
     }
