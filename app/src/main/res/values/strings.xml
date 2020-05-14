@@ -12,4 +12,9 @@
     <string name="skipBack">Previous skip</string>
     <string name="skipForward">Skip forward</string>
     <string name="play">Adds one play</string>
+    <string name="detailUsername">USERNAME:</string>
+    <string name="detailFirstName">FIRST NAME:</string>
+    <string name="detailLastName">LAST NAME:</string>
+    <string name="detailPlatform">PLATFORM:</string>
+    <string name="detailNose">HAS A NOSE:</string>
 </resources>

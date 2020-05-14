@@ -59,9 +59,8 @@ class ProfileFragment : Fragment() {
         tvPlatform = view.findViewById(R.id.tvPlatform)
         ivProfilePicture = view.findViewById(R.id.ivProfilePicture)
 
+        // Populate text with data from HTTP call
         initialize()
-
-
     }
 
     private fun initialize() {

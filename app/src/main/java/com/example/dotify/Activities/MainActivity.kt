@@ -94,11 +94,13 @@ class MainActivity : AppCompatActivity(),
             }
         }
 
+        // Bottom Navigation
         bnNavigation.setOnNavigationItemSelectedListener{ item ->
             profileFragmentSetup(item)
             true
         }
 
+        // HTTP call
         app.apiManager.fetchData { profile ->
             app.profileManager.profile = profile
         }
@@ -116,6 +118,7 @@ class MainActivity : AppCompatActivity(),
     // Getter method for song list fragment
     private fun getSongListFragment() = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
 
+    // Getter method for profile fragment
     private fun getProfileFragment() = supportFragmentManager.findFragmentByTag(ProfileFragment.TAG) as? ProfileFragment
 
     // Pops top fragment out of stack
@@ -172,6 +175,7 @@ class MainActivity : AppCompatActivity(),
         super.onSaveInstanceState(outState)
     }
 
+    // Profile fragment method
     private fun profileFragmentSetup(menuItem : MenuItem) {
         val item = menuItem.toString()
         val fragment = getProfileFragment()

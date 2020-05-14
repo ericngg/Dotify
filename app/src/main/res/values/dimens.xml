@@ -16,4 +16,9 @@
     <dimen name="elevation">50dp</dimen>
     <dimen name="miniSize">18sp</dimen>
     <dimen name="navPadding">5dp</dimen>
+    <dimen name="detailMargin">25dp</dimen>
+    <dimen name="tenMargin">10dp</dimen>
+    <dimen name="detailSize">25sp</dimen>
+    <dimen name="detailWidth">150dp</dimen>
+    <dimen name="twentyMargin">20dp</dimen>
 </resources>
